@@ -32,18 +32,19 @@ public class OpenEShopAutomationTests
 
         usernameField.SendKeys("demo@open-eshop.com");
         passwordField.SendKeys("demo");
-        wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[contains(@class,'btn-success')]")));
-
+        loginButtonSecond.Click();
         IWebElement dropdownMenuButton = driver.FindElement(By.XPath("//a[@data-toggle='dropdown']"));
         dropdownMenuButton.Click();
-
         IWebElement userOrdersButton = driver.FindElement(By.XPath("//a[contains(@href,'profile/orders')]"));
         userOrdersButton.Click();
-        wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='panel-body')]")));
+
+
+        wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//h1")));
 
         Assert.IsTrue(DoesElementExist(By.XPath("//a[contains(@title, 'print order')]")));
-
-        IWebElement logoutButton = driver.FindElement(By.XPath("//div[contains(@href,'auth/logout')]"));
+        IWebElement dropdownButton = driver.FindElement(By.XPath("//span[@class='caret']"));
+        dropdownButton.Click();
+        IWebElement logoutButton = driver.FindElement(By.XPath("//a[contains(@href,'auth/logout')]"));
         logoutButton.Click();
     }
 
